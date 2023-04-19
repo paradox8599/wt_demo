@@ -39,7 +39,6 @@ export default function UserAvatar({
                 // Position
                 "fixed",
                 "right-0",
-                "z-50",
                 // Size
                 "w-full md:w-[20rem]",
                 "h-full",

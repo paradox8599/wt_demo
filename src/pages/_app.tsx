@@ -33,7 +33,7 @@ export default function App({ Component, pageProps }: AppProps) {
       >
         Pop
       </button>
-      <div className="sticky top-0 z-50">
+      <div className="sticky top-0 z-10">
         {/* Header */}
         <Header />
         {/* Nav bar */}

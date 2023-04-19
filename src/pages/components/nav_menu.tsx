@@ -64,7 +64,6 @@ export default function NavMenu() {
               className="hidden md:flex justify-center items-center px-2"
             >
               <div className="font-bold pr-2">{key}</div>
-
               {i > 0 ? <I icon={faChevronDown} className="text-xl" /> : ""}
             </div>
           );
