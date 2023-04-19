@@ -5,13 +5,13 @@ import R from "react";
 export default function Cart({ iconSize = "text-4xl" }: { iconSize: string }) {
   const [count, setCount] = R.useState<number>(0);
 
-  function randCount() {
-    setCount(Math.floor(Math.random() * 100));
-  }
+  R.useEffect(() => {
+    setCount(Math.floor(Math.random() * 20));
+  }, []);
 
   return (
     <>
-      <div className="flex justify-start items-center" onClick={randCount}>
+      <div className="flex justify-start items-center">
         <div className="relative">
           <div
             className={[
@@ -41,7 +41,7 @@ export default function Cart({ iconSize = "text-4xl" }: { iconSize: string }) {
             {Array(count)
               .fill(1)
               .map((v) => {
-                return Math.random() * 20;
+                return Math.random() * 30;
               })
               .reduce((a, b) => a + b, 0)
               .toFixed(2)}

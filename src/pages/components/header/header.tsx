@@ -5,10 +5,10 @@ import SearchBar from "./search_bar";
 import StoreDropdown from "./store_dropdown";
 import UserAvatar from "./user_avatar";
 
-function VerticalDivider() {
+function VerticalDivider({ className }: { className?: string }) {
   return (
     <>
-      <div className="border-l-[1px] border-black"></div>
+      <div className={`border-l-[1px] border-black ${className}`}></div>
     </>
   );
 }
@@ -22,7 +22,7 @@ function HeaderRSection({
 }) {
   return (
     <>
-      <div className={`px-1 md:px-2 flex items-center ${className}`}>
+      <div className={`px-1 md:px-2 md:flex items-center ${className}`}>
         {children}
       </div>
     </>
@@ -43,7 +43,7 @@ export default function Header() {
               alt="Logo"
               width={300}
               height={0}
-              className="w-full p-1 px-8"
+              className="w-full p-1 px-2 md:px-8"
             />
           </div>
           {/* Right */}
@@ -57,17 +57,18 @@ export default function Header() {
               "md:justify-center",
               "items-center",
               "px-2",
+              "lg:w-3/4 xl:w-[30wh]"
             ].join(" ")}
           >
             {/* Right Top */}
-            <SearchBar className="w-full lg:w-3/4 xl:w-[30wh]" />
+            <SearchBar className="w-full" />
             {/* Right Bottom */}
-            <div className="py-2 flex justify-end">
+            <div className="py-2 w-full flex justify-evenly">
               {/* Store */}
-              <HeaderRSection>
+              <HeaderRSection className="hidden">
                 <StoreDropdown iconSize={iconSize} />
               </HeaderRSection>
-              <VerticalDivider />
+              <VerticalDivider className="hidden md:block" />
               {/* User icon */}
               <HeaderRSection>
                 <UserAvatar iconSize={iconSize} />

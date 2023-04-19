@@ -1,5 +1,6 @@
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon as I } from "@fortawesome/react-fontawesome";
+import StoreDropdown from "./header/store_dropdown";
 
 export default function NavMenu() {
   const data = {
@@ -44,20 +45,32 @@ export default function NavMenu() {
   };
   return (
     <>
-      <div className="h-12 bg-[#40413B] text-white flex items-center px-4">
+      <div
+        className={[
+          "flex",
+          "h-12",
+          "bg-[#40413B]",
+          "text-white",
+          "items-center",
+          "px-4",
+          "justify-between",
+          "md:justify-start",
+        ].join(" ")}
+      >
         {Object.keys(data).map((key, i) => {
           return (
-            <>
-              <div className="flex justify-center items-center px-2">
-                <div key={i} className="font-bold pr-2">
-                  {key}
-                </div>
+            <div
+              key={i}
+              className="hidden md:flex justify-center items-center px-2"
+            >
+              <div className="font-bold pr-2">{key}</div>
 
-                {i > 0 ? <I icon={faChevronDown} className="text-xl" /> : ""}
-              </div>
-            </>
+              {i > 0 ? <I icon={faChevronDown} className="text-xl" /> : ""}
+            </div>
           );
         })}
+        <StoreDropdown className="block md:hidden" iconSize="text-2xl" />
+        <I icon={faBars} className="block md:hidden text-xl" />
       </div>
     </>
   );
