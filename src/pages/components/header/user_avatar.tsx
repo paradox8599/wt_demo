@@ -2,6 +2,8 @@ import { FontAwesomeIcon as I } from "@fortawesome/react-fontawesome";
 import { faChevronUp, faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import { Popover } from "@headlessui/react";
 import R from "react";
+import { StateContext } from "@/state";
+import { Actions } from "@/type";
 
 export default function UserAvatar({
   iconSize = "text-4xl",
@@ -9,13 +11,19 @@ export default function UserAvatar({
   iconSize: string;
 }) {
   const [loggedIn, setLoggedIn] = R.useState<boolean>(false);
+  const { dispatch } = R.useContext(StateContext);
 
   return (
     <>
       <Popover>
         {({ open }) => (
           <>
-            <Popover.Button className="focus:outline-none">
+            <Popover.Button
+              className="focus:outline-none"
+              onClick={() => {
+                dispatch({ type: Actions.BlurBackground, payload: !open });
+              }}
+            >
               <I
                 icon={faCircleUser}
                 className={`${iconSize} ${
@@ -23,11 +31,38 @@ export default function UserAvatar({
                 }`}
               />
             </Popover.Button>
-            <Popover.Panel className="absolute z-50 w-64 h-full bg-white rounded-lg shadow-lg p-4 -translate-x-1/2">
+            <Popover.Panel
+              style={{
+                backdropFilter: "blur(10px)",
+              }}
+              className={[
+                // Position
+                "fixed",
+                "right-0",
+                "z-50",
+                // Size
+                "w-full md:w-[20rem]",
+                "h-full",
+                "p-4",
+                // Style
+                "bg-white",
+                "shadow-lg",
+              ].join(" ")}
+            >
               {({ close }) => (
                 <>
                   {loggedIn ? (
-                    <></>
+                    <>
+                      <div className="w-full pt-2 py-1">
+                        <button
+                          type="button"
+                          className="w-full flex justify-center py-2 px-4 border-2 border-transparent shadow-sm text-sm font-bold rounded-full text-green-500 border-green-500 uppercase"
+                          onClick={() => setLoggedIn(false)}
+                        >
+                          Logout
+                        </button>
+                      </div>
+                    </>
                   ) : (
                     <>
                       {/* Login Title */}
@@ -35,7 +70,11 @@ export default function UserAvatar({
                         <div className="text-md font-bold uppercase pr-1">
                           LOGIN TO YOUR ACCOUNT
                         </div>
-                        <I icon={faChevronUp} className="text-sm" />
+                        <I
+                          icon={faChevronUp}
+                          className="text-sm"
+                          onClick={() => close()}
+                        />
                       </div>
                       {/* Login Form */}
                       <div className="flex flex-col justify-center items-center py-2">
@@ -79,7 +118,10 @@ export default function UserAvatar({
                               <button
                                 type="button"
                                 className="w-full flex justify-center py-2 px-4 border-2 border-transparent shadow-sm text-sm font-bold rounded-full text-green-500 border-green-500 uppercase"
-                                onClick={() => close()}
+                                onClick={() => {
+                                  setLoggedIn(true);
+                                  close();
+                                }}
                               >
                                 Login
                               </button>

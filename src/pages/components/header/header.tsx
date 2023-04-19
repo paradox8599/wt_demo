@@ -1,6 +1,6 @@
 import { headerLogo64 } from "@/data";
 import Image from "next/image";
-import Cart from "./cart";
+import Cart from "./cart/cart";
 import SearchBar from "./search_bar";
 import StoreDropdown from "./store_dropdown";
 import UserAvatar from "./user_avatar";
@@ -34,7 +34,7 @@ export default function Header() {
 
   return (
     <>
-      <div className="w-full flex flex-row justify-center">
+      <div className="w-full bg-white flex flex-row justify-center">
         <div className="sm:flex justify-center items-center py-3 w-full">
           {/* Left */}
           <div className="flex-1">

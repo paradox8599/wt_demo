@@ -6,6 +6,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Popover } from "@headlessui/react";
 import R from "react";
+import { StateContext } from "@/state";
+import { Actions } from "@/type";
 
 function StoreOption({
   selected = false,
@@ -50,6 +52,7 @@ export default function StoreDropdown({
   iconSize?: string;
   className?: string;
 }) {
+  const { dispatch } = R.useContext(StateContext);
   const [storeIdx, setStoreIdx] = R.useState<number>(0);
   const [msg, setMsg] = R.useState<string>("");
   const msgs: string[] = [
@@ -79,6 +82,9 @@ export default function StoreDropdown({
                 className={`flex items-center self-start text-[0.6rem] ${
                   open ? "text-red-700" : "text-white md:text-black"
                 }`}
+                onClick={() => {
+                  dispatch({ type: Actions.BlurBackground, payload: !open });
+                }}
               >
                 {/* Store icon */}
                 <I icon={faStore} className={iconSize} />

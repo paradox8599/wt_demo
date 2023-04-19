@@ -4,18 +4,19 @@ import PopUp from "./components/popup";
 import R from "react";
 import Header from "./components/header/header";
 import NavMenu from "./components/nav_menu";
-import { reducer, StateContext } from "@/state";
+import { initialState, reducer, StateContext } from "@/state";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
+import { State } from "@/type";
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [state, dispatch] = R.useReducer(reducer, {});
+  const [state, dispatch] = R.useReducer(reducer, initialState);
 
   // Demo pop up
   const [msg, setMsg] = R.useState<string>("");
 
   return (
-    <StateContext.Provider value={state}>
+    <StateContext.Provider value={{ state, dispatch }}>
       <PopUp>{msg}</PopUp>
 
       {/* Demo pop up */}
@@ -32,13 +33,20 @@ export default function App({ Component, pageProps }: AppProps) {
       >
         Pop
       </button>
-
-      {/* Header */}
-      <Header />
-      {/* Nav bar */}
-      <NavMenu />
+      <div className="sticky top-0 z-50">
+        {/* Header */}
+        <Header />
+        {/* Nav bar */}
+        <NavMenu />
+      </div>
       {/* Body */}
-      <Component {...pageProps} />
+      <div
+        className={[
+          state.blurBackground ? "filter blur brightness-50" : "",
+        ].join(" ")}
+      >
+        <Component {...pageProps} />
+      </div>
     </StateContext.Provider>
   );
 }
