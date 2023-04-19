@@ -1,14 +1,117 @@
 import { FontAwesomeIcon as I } from "@fortawesome/react-fontawesome";
-import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
+import { faChevronUp, faCircleUser } from "@fortawesome/free-solid-svg-icons";
+import { Popover } from "@headlessui/react";
+import R from "react";
 
 export default function UserAvatar({
   iconSize = "text-4xl",
 }: {
   iconSize: string;
 }) {
+  const [loggedIn, setLoggedIn] = R.useState<boolean>(false);
+
   return (
     <>
-      <I icon={faCircleUser} className={`${iconSize}`} />
+      <Popover>
+        {({ open }) => (
+          <>
+            <Popover.Button className="focus:outline-none">
+              <I
+                icon={faCircleUser}
+                className={`${iconSize} ${
+                  open ? "text-red-700" : "text-black"
+                }`}
+              />
+            </Popover.Button>
+            <Popover.Panel className="absolute z-50 w-64 h-full bg-white rounded-lg shadow-lg p-4 -translate-x-1/2">
+              {({ close }) => (
+                <>
+                  {loggedIn ? (
+                    <></>
+                  ) : (
+                    <>
+                      {/* Login Title */}
+                      <div className="flex justify-center items-center py-2 border-b-4 border-black">
+                        <div className="text-md font-bold uppercase pr-1">
+                          LOGIN TO YOUR ACCOUNT
+                        </div>
+                        <I icon={faChevronUp} className="text-sm" />
+                      </div>
+                      {/* Login Form */}
+                      <div className="flex flex-col justify-center items-center py-2">
+                        <form className="w-full">
+                          <div className="flex flex-col justify-center items-center">
+                            {/* Email */}
+                            <input
+                              type="email"
+                              autoComplete="email"
+                              placeholder="Email Address"
+                              className="my-1 px-1 w-full shadow-sm sm:text-sm border-black border-[1px]"
+                            />
+                            {/* Password */}
+                            <input
+                              type="password"
+                              placeholder="Password"
+                              autoComplete="current-password"
+                              className="my-1 px-1 block w-full shadow-sm sm:text-sm  border-black border-[1px]"
+                            />
+
+                            {/* Remember me */}
+                            {/* <div className="w-full">
+                              <div className="flex items-center justify-between">
+                                <div className="flex items-center">
+                                  <input
+                                    type="checkbox"
+                                    className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                                  />
+                                  <label
+                                    htmlFor="remember_me"
+                                    className="ml-2 block text-sm text-gray-900"
+                                  >
+                                    Remember me
+                                  </label>
+                                </div>
+                              </div>
+                            </div> */}
+
+                            {/* Login button */}
+                            <div className="w-full pt-2 py-1">
+                              <button
+                                type="button"
+                                className="w-full flex justify-center py-2 px-4 border-2 border-transparent shadow-sm text-sm font-bold rounded-full text-green-500 border-green-500 uppercase"
+                                onClick={() => close()}
+                              >
+                                Login
+                              </button>
+                            </div>
+                            {/* Forget password button */}
+                            <div className="w-full py-1">
+                              <button
+                                type="button"
+                                className="w-full flex justify-center py-2 px-4 border-2 border-transparent shadow-sm text-sm font-medium rounded-full text-gray-700 border-gray-700 uppercase"
+                              >
+                                FORGOT PASSWORD?
+                              </button>
+                            </div>
+                            <div className="w-full py-1">
+                              <button
+                                type="button"
+                                className="w-full flex justify-center py-2 px-4 border-2 border-transparent shadow-sm text-sm font-medium rounded-full text-white bg-gray-700 uppercase"
+                              >
+                                CREATE AN ACCOUNT
+                              </button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </>
+                  )}
+                </>
+              )}
+            </Popover.Panel>
+          </>
+        )}
+      </Popover>
     </>
   );
 }

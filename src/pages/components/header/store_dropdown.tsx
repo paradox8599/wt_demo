@@ -19,7 +19,11 @@ function StoreOption({
   return (
     <>
       <div className="flex flex-row justify-between items-center py-1">
-        <div className="flex flex-col justify-center items-start pr-16">
+        <div
+          className={`flex flex-col justify-center items-start pr-16 ${
+            selected ? "text-red-700" : "text-black"
+          }`}
+        >
           <div className="font-bold text-sm">{store.loc}</div>
           <div className="text-[0.6rem]">{store.addr}</div>
         </div>
@@ -71,7 +75,11 @@ export default function StoreDropdown({
         <Popover>
           <Popover.Button>
             {({ open }) => (
-              <div className="flex items-center self-start text-[0.6rem]">
+              <div
+                className={`flex items-center self-start text-[0.6rem] ${
+                  open ? "text-red-700" : "text-white md:text-black"
+                }`}
+              >
                 {/* Store icon */}
                 <I icon={faStore} className={iconSize} />
                 {/* Store info */}
@@ -99,7 +107,7 @@ export default function StoreDropdown({
               </div>
             )}
           </Popover.Button>
-          <Popover.Panel className="absolute z-10 bg-[#f5f5f5] p-4 text-black">
+          <Popover.Panel className="absolute z-10 p-4 text-black bg-white rounded-lg shadow-lg">
             {({ close }) => (
               <>
                 <div className="font-bold pb-2 mb-2 border-b-4 border-black">
