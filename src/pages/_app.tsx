@@ -36,8 +36,6 @@ export default function App({ Component, pageProps }: AppProps) {
       <div className="sticky top-0 z-10">
         {/* Header */}
         <Header />
-        {/* Nav bar */}
-        <NavMenu />
       </div>
       {/* Body */}
       <div

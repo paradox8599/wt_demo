@@ -50,7 +50,6 @@ export default function Hero() {
           className={[
             "md:w-1/2",
             "bg-[#40413b]",
-            "z-10",
             "text-white",
             "font-bold",
             "text-5xl",
