@@ -32,7 +32,7 @@ export default function Intro() {
           </div>
         </div>
         {/* Image */}
-        <div className="flex-1 px-4">
+        <div className="flex-1 px-4 flex flex-row justify-center">
           <Image src={imgUrl} alt="Intro" width={500} height={0} />
         </div>
       </div>

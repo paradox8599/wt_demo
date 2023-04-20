@@ -1,14 +1,13 @@
 import { FontAwesomeIcon as I } from "@fortawesome/react-fontawesome";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import R from "react";
+import { Popover } from "@headlessui/react";
 
-export default function Cart({ iconSize = "text-4xl" }: { iconSize: string }) {
-  const [count, setCount] = R.useState<number>(0);
+function CartItem({ item }: { item: any }) {
+  return <></>;
+}
 
-  R.useEffect(() => {
-    setCount(Math.floor(Math.random() * 20));
-  }, []);
-
+function CartButton({ count, iconSize }: { count: number; iconSize: string }) {
   return (
     <>
       <div className="flex justify-start items-center">
@@ -49,6 +48,66 @@ export default function Cart({ iconSize = "text-4xl" }: { iconSize: string }) {
           <div className="text-[0.6rem]">in your cart</div>
         </div>
       </div>
+    </>
+  );
+}
+
+export default function Cart({ iconSize = "text-4xl" }: { iconSize: string }) {
+  const [count, setCount] = R.useState<number>(0);
+
+  R.useEffect(() => {
+    setCount(Math.floor(Math.random() * 20));
+  }, []);
+
+  return (
+    <>
+      <Popover>
+        {({ open }) => (
+          <>
+            <Popover.Button>
+              <CartButton count={count} iconSize={iconSize} />
+            </Popover.Button>
+            <Popover.Panel className="absolute w-full md:w-[20rem] right-0 mx-2 p-4 bg-white shadow-lg rounded-lg">
+              {({ close }) => (
+                <>
+                  <div className="flex justify-between items-center py-2 border-b-4 border-black">
+                    <div className="font-bold text-md uppercase">
+                      View Your Cart
+                    </div>
+                    <I
+                      icon={faChevronUp}
+                      className="text-sm"
+                      onClick={() => close()}
+                    />
+                  </div>
+                  {/* Cart info */}
+                  <div className="flex flex-col font-bold text-sm pt-2">
+                    {/* Subtotal */}
+                    <div className="flex flex-row justify-between items-center">
+                      <div className="uppercase">Cart Subtotal:</div>
+                      <div className="">$123.45</div>
+                    </div>
+                    {/* Total Saved */}
+                    <div className="flex flex-row justify-between items-center text-red-500">
+                      <div className="uppercase">Total Saved:</div>
+                      <div className="">$67.89</div>
+                    </div>
+                    {/* Buttons */}
+                    <button className="w-full py-2 px-4 my-1 border-2 font-bold rounded-full text-green-500 border-green-500 uppercase">
+                      Continue Shopping
+                    </button>
+                    <button className="w-full py-2 px-4 my-1 font-bold rounded-full text-white bg-[#40413b] uppercase">
+                      Continue Shopping
+                    </button>
+                  </div>
+                  {/* Cart list */}
+                  <div className="flex flex-col justify-center items-start"></div>
+                </>
+              )}
+            </Popover.Panel>
+          </>
+        )}
+      </Popover>
     </>
   );
 }

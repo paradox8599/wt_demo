@@ -32,9 +32,6 @@ export default function UserAvatar({
               />
             </Popover.Button>
             <Popover.Panel
-              style={{
-                backdropFilter: "blur(10px)",
-              }}
               className={[
                 // Position
                 "fixed",
