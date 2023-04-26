@@ -35,6 +35,7 @@ function SwiperSection() {
             width={500}
             height={0}
             className="block w-full h-full object-cover"
+            priority
           />
         </SwiperSlide>
       ))}

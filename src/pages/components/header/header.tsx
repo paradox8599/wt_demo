@@ -3,7 +3,7 @@ import Image from "next/image";
 import Cart from "./cart/cart";
 import SearchBar from "./search_bar";
 import StoreDropdown from "./store_dropdown";
-import UserAvatar from "./user_avatar";
+import UserButton from "./user_button";
 
 function VerticalDivider({ className }: { className?: string }) {
   return (
@@ -30,7 +30,7 @@ function HeaderRSection({
 }
 
 export default function Header() {
-  const iconSize = "text-3xl";
+  const iconSize = "w-8 md:w-10";
 
   return (
     <>
@@ -71,7 +71,7 @@ export default function Header() {
               <VerticalDivider className="hidden md:block" />
               {/* User icon */}
               <HeaderRSection>
-                <UserAvatar iconSize={iconSize} />
+                <UserButton iconSize={iconSize} />
               </HeaderRSection>
               <VerticalDivider />
               {/* Cart */}

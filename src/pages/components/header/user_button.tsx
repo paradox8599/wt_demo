@@ -5,8 +5,8 @@ import R from "react";
 import { StateContext } from "@/state";
 import { Actions } from "@/type";
 
-export default function UserAvatar({
-  iconSize = "text-4xl",
+export default function UserButton({
+  iconSize = "w-8 md:w-10",
 }: {
   iconSize: string;
 }) {
@@ -32,9 +32,6 @@ export default function UserAvatar({
               />
             </Popover.Button>
             <Popover.Panel
-              style={{
-                backdropFilter: "blur(10px)",
-              }}
               className={[
                 // Position
                 "fixed",
@@ -71,7 +68,7 @@ export default function UserAvatar({
                         </div>
                         <I
                           icon={faChevronUp}
-                          className="text-sm"
+                          className="w-6"
                           onClick={() => close()}
                         />
                       </div>

@@ -7,7 +7,7 @@ export default function SearchBar({ className }: { className?: string }) {
       <div className={`${className}`}>
         <div className={`relative w-full`}>
           {/* Icon */}
-          <I icon={faSearch} className="absolute top-[0.3rem] right-[0.5rem]" />
+          <I icon={faSearch} className="absolute top-[0.3rem] right-[0.5rem] w-4" />
           {/* Input field */}
           <input
             type="text"

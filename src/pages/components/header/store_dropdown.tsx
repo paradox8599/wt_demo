@@ -46,7 +46,7 @@ function StoreOption({
 }
 
 export default function StoreDropdown({
-  iconSize = "text-4xl",
+  iconSize = "w-6 md:w-10",
   className,
 }: {
   iconSize?: string;
@@ -107,7 +107,7 @@ export default function StoreDropdown({
                 {stores.length > 1 && (
                   <I
                     icon={open ? faChevronUp : faChevronDown}
-                    className="text-xl"
+                    className="w-6"
                   />
                 )}
               </div>
