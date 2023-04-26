@@ -57,6 +57,7 @@ export default function Hero() {
             "px-20",
             "flex",
             "flex-col",
+            "justify-center",
           ].join(" ")}
         >
           <div>New</div>

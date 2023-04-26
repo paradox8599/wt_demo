@@ -22,7 +22,7 @@ function HeaderRSection({
 }) {
   return (
     <>
-      <div className={`px-1 md:px-2 md:flex items-center ${className}`}>
+      <div className={`px-6 md:px-4 md:flex items-center ${className}`}>
         {children}
       </div>
     </>
@@ -30,12 +30,12 @@ function HeaderRSection({
 }
 
 export default function Header() {
-  const iconSize = "w-8 md:w-10";
+  const iconSize = "w-6 md:w-8";
 
   return (
     <>
       <div className="w-full bg-white flex flex-row justify-center">
-        <div className="sm:flex justify-center items-center py-3 w-full">
+        <div className="md:flex justify-center items-center py-3 w-full">
           {/* Left */}
           <div className="flex-1">
             <Image
@@ -57,13 +57,12 @@ export default function Header() {
               "md:justify-center",
               "items-center",
               "px-2",
-              "lg:w-3/4 xl:w-[30wh]"
             ].join(" ")}
           >
             {/* Right Top */}
-            <SearchBar className="w-full" />
+            <SearchBar className="w-full xl:w-[614px]" />
             {/* Right Bottom */}
-            <div className="py-2 w-full flex justify-evenly">
+            <div className="py-2 px-2 md:w-full md:px-0 flex justify-end">
               {/* Store */}
               <HeaderRSection className="hidden">
                 <StoreDropdown iconSize={iconSize} />

@@ -23,7 +23,7 @@ function StoreOption({
       <div className="flex flex-row justify-between items-center py-1">
         <div
           className={`flex flex-col justify-center items-start pr-16 ${
-            selected ? "text-red-700" : "text-black"
+            selected ? "text-green-700" : "text-black"
           }`}
         >
           <div className="font-bold text-sm">{store.loc}</div>
@@ -82,9 +82,6 @@ export default function StoreDropdown({
                 className={`flex items-center self-start text-[0.6rem] ${
                   open ? "text-red-700" : "text-white md:text-black"
                 }`}
-                onClick={() => {
-                  dispatch({ type: Actions.BlurBackground, payload: !open });
-                }}
               >
                 {/* Store icon */}
                 <I icon={faStore} className={iconSize} />
@@ -112,7 +109,8 @@ export default function StoreDropdown({
                 )}
               </div>
             )}
-          </Popover.Button>
+            </Popover.Button>
+          <Popover.Overlay className={"fixed inset-0 bg-black opacity-30"} />
           <Popover.Panel className="absolute z-10 p-4 text-black bg-white rounded-lg shadow-lg">
             {({ close }) => (
               <>

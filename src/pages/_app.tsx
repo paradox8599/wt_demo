@@ -28,7 +28,7 @@ export default function App({ Component, pageProps }: AppProps) {
           }, 3000);
         }}
         hidden={msg ? true : false}
-        className={`fixed top-0 left-0 rounded-md m-1 py-1 px-2 bg-gray-500 hover:bg-gray-700 text-white text-[1em]`}
+        className={`fixed z-50 top-0 left-0 rounded-md m-1 py-1 px-2 bg-gray-500 hover:bg-gray-700 text-white text-[1em]`}
         type="button"
       >
         Pop
@@ -40,11 +40,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <NavMenu />
       </div>
       {/* Body */}
-      <div
-        className={[
-          state.blurBackground ? "filter blur brightness-50" : "",
-        ].join(" ")}
-      >
+      <div>
         <Component {...pageProps} />
       </div>
     </StateContext.Provider>

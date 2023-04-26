@@ -20,17 +20,15 @@ export default function UserButton({
           <>
             <Popover.Button
               className="focus:outline-none"
-              onClick={() => {
-                dispatch({ type: Actions.BlurBackground, payload: !open });
-              }}
             >
               <I
                 icon={faCircleUser}
                 className={`${iconSize} ${
-                  open ? "text-red-700" : "text-black"
+                  open ? "text-green-700" : "text-black"
                 }`}
               />
             </Popover.Button>
+            <Popover.Overlay className={"fixed inset-0 bg-black opacity-30"} />
             <Popover.Panel
               className={[
                 // Position
@@ -52,7 +50,7 @@ export default function UserButton({
                       <div className="w-full pt-2 py-1">
                         <button
                           type="button"
-                          className="w-full flex justify-center py-2 px-4 border-2 border-transparent shadow-sm text-sm font-bold rounded-full text-green-500 border-green-500 uppercase"
+                          className="w-full flex justify-center py-2 px-4 border-2 shadow-sm text-sm font-bold rounded-full text-green-500 border-green-500 uppercase"
                           onClick={() => setLoggedIn(false)}
                         >
                           Logout
@@ -113,7 +111,7 @@ export default function UserButton({
                             <div className="w-full pt-2 py-1">
                               <button
                                 type="button"
-                                className="w-full flex justify-center py-2 px-4 border-2 border-transparent shadow-sm text-sm font-bold rounded-full text-green-500 border-green-500 uppercase"
+                                className="w-full flex justify-center py-2 px-4 border-2 shadow-sm text-sm font-bold rounded-full text-green-500 border-green-500 uppercase"
                                 onClick={() => {
                                   setLoggedIn(true);
                                   close();
@@ -126,7 +124,7 @@ export default function UserButton({
                             <div className="w-full py-1">
                               <button
                                 type="button"
-                                className="w-full flex justify-center py-2 px-4 border-2 border-transparent shadow-sm text-sm font-medium rounded-full text-gray-700 border-gray-700 uppercase"
+                                className="w-full flex justify-center py-2 px-4 border-2 shadow-sm text-sm font-medium rounded-full text-gray-700 border-gray-700 uppercase"
                               >
                                 FORGOT PASSWORD?
                               </button>
